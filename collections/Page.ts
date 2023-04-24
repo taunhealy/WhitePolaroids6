@@ -1,5 +1,5 @@
 import { CollectionConfig } from 'payload/types';
-import { MediaType } from './Media';
+import { Type as MediaType } from './Media';
 import formatSlug from '../utilities/formatSlug';
 import { Image } from '../blocks/Image/Config';
 import { Type as ImageType } from '../blocks/Image/Component';

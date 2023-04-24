@@ -1,6 +1,5 @@
 import { CollectionConfig } from 'payload/types';
 import slug from '../fields/slug';
-import Media from './Media';
 
 export type Type = {
   title: string
@@ -11,9 +10,6 @@ const Portfolio: CollectionConfig = {
 slug: 'portfolio',
 admin: {
     useAsTitle: 'title',
-},
-access: {
-    read: () => true,
 },
 
 fields: [
