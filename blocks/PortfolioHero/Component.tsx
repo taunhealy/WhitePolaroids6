@@ -1,4 +1,6 @@
 import React from 'react';
+import Media, { Type as MediaType } from '../../collections/Media';
+
 
 export type Type = {
     blockType: 'portfoliohero'
@@ -9,4 +11,11 @@ export type Type = {
   }
   
   export const Component: React.FC<Type> = (props) => {
-    const { image } = props;
+    const { image, title, location } = props;
+
+    return (
+      <h1>{title}</h1>
+      <h2>{location}</h2>
+      <img src={image.url} alt={image.alt} />
+    );
+  };
