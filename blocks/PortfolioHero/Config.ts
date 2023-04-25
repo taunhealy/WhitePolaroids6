@@ -2,7 +2,6 @@ import { Block } from 'payload/types';
 import { Type as PortfolioType } from '../../collections/Portfolio';
 
 export type Type = {
-
     portfolio: PortfolioType[]
     blockType: 'portfoliohero'
   }

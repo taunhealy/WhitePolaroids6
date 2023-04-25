@@ -8,16 +8,27 @@ export type SizeDetails = {
 
 export type Size = 'card' | 'square' | 'portrait' | 'feature';
 
-export type Type = {
-  filename: string
-  alt: string
-  mimeType: string
-  sizes: {
-    card?: SizeDetails
-    square?: SizeDetails
-    portrait?: SizeDetails
-    feature?: SizeDetails
+export type Filename = string & {
+  __filenameBrand: 'filename'
+};
+
+const isFilename = (value: unknown): value is Filename => {
+  if (typeof value !== 'string') {
+    return false;
   }
+  return /^[a-zA-Z0-9-]*$/.test(value);
+};
+
+export type Type = {
+  filename: Filename,
+  alt: string,
+  mimeType: string,
+  sizes: {
+    card?: SizeDetails,
+    square?: SizeDetails,
+    portrait?: SizeDetails,
+    feature?: SizeDetails,
+  },
 }
 
 const Media: CollectionConfig = {
@@ -55,6 +66,17 @@ const Media: CollectionConfig = {
   },
   fields: [
     {
+      name: 'filename',
+      label: 'Filename',
+      type: 'text',
+      required: true,
+      validate: (value: unknown) => {
+        if (!isFilename(value)) {
+          return 'Filename must only contain alphanumeric characters and hyphens';
+        }
+      },
+    },
+    {
       name: 'alt',
       label: 'Alt Text',
       type: 'text',
@@ -64,3 +86,4 @@ const Media: CollectionConfig = {
 };
 
 export default Media;
+yar

@@ -1,11 +1,17 @@
 import { CollectionConfig } from 'payload/types';
 import slug from '../fields/slug';
+import { Type as MediaType } from './Media';
 
 export type Type = {
   title: string
+  featuredMedia: MediaType
+  previewMedia: {
+    media: MediaType
+  }[]
+  location?: string
   slug: string
+  meta: MetaType
 }
-
 const Portfolio: CollectionConfig = {
 slug: 'portfolio',
 admin: {
@@ -29,6 +35,7 @@ fields: [
         name: 'location',
         label: 'Location',
         type: 'text',
+        required: false,
         admin: {
           position: 'sidebar',
         }
