@@ -10,47 +10,51 @@ export type Type = {
   }[]
   location?: string
   slug: string
-  meta: MetaType
 }
 const Portfolio: CollectionConfig = {
-slug: 'portfolio',
-admin: {
+  slug: 'portfolio',
+  admin: {
     useAsTitle: 'title',
-},
+  },
 
-fields: [
+  fields: [
+    slug,
     {
       name: 'title',
       type: 'text',
       required: true,
     },
     {
-        name: 'featuredMedia',
-        label: 'Featured Media',
-        type: 'upload',
-        relationTo: 'media',
-        required: true,
-      },
-      {
-        name: 'location',
-        label: 'Location',
-        type: 'text',
-        required: false,
-        admin: {
-          position: 'sidebar',
-        }
+      name: 'featuredMedia',
+      label: 'Featured Media',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
     },
     {
-    name: 'images',
-    type: 'upload',
-    relationTo: 'media',
-    filterOptions: {
-        mimeType: { contains: 'image' },
-    hasMany: true,
-    required: true,
-  },
-},
-],
+      name: 'location',
+      label: 'Location',
+      type: 'text',
+      required: false,
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'previewMedia',
+      label: 'Preview Media',
+      type: 'group',
+      fields: [
+        {
+          name: 'media',
+          label: 'Media',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+      ],
+    },
+  ],
 };
 
 export default Portfolio;

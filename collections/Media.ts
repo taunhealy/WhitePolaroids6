@@ -16,7 +16,7 @@ const isFilename = (value: unknown): value is Filename => {
   if (typeof value !== 'string') {
     return false;
   }
-  return /^[a-zA-Z0-9-]*$/.test(value);
+  return /^.*$/.test(value);
 };
 
 export type Type = {
@@ -69,10 +69,10 @@ const Media: CollectionConfig = {
       name: 'filename',
       label: 'Filename',
       type: 'text',
-      required: true,
+      required: false,
       validate: (value: unknown) => {
         if (!isFilename(value)) {
-          return 'Filename must only contain alphanumeric characters and hyphens';
+          return 'Filename can contain any character';
         }
       },
     },
@@ -86,4 +86,3 @@ const Media: CollectionConfig = {
 };
 
 export default Media;
-yar
